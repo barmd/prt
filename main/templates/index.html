@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Barkamol Murodjonov portfolio</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + JohnDoe main styles -->
+	<link rel="stylesheet" href="{% static 'css/johndoe.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <header class="header">
+        <div class="container">
+            <ul class="social-icons pt-3">
+                {% for l in social %}
+                <li class="social-item"><a class="social-link text-light" href="{{l.url}}"><i class="{{l.icon}}" aria-hidden="true"></i></a></li>
+                
+                {% endfor %}
+            </ul>   
+
+            {% for a in information %}
+            <div class="header-content">
+                <h4 class="header-subtitle" >Hello, I am</h4>
+                <h1 class="header-title">Barkamol</h1>
+                <h6 class="header-mono" >{{a.spec}}</h6>
+                <a href="{{a.file.url}}" class="btn btn-primary btn-rounded" download="download" ><i class="ti-printer pr-2"></i>Print Resume</a>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+        <div class="container">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link">Resume</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav brand">
+                    <img src="{{a.image.url}}" alt="" class="brand-img">
+                    <li class="brand-txt">
+                        <h5 class="brand-title">John Doe</h5>
+                        <div class="brand-subtitle">Web Designer | Developer</div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link">Sertificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item last-item">
+                        <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   
+    <div class="container-fluid">
+        <div id="about" class="row about-section">
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Who am I ?</h3>
+                <span class="line mb-5"></span>
+                <h5 class="mb-3">{{a.spec}}</h5>
+                <p class="mt-20">{{a.notes}}</p>
+                <a href="{{a.file.url}}" class="btn btn-outline-danger" download="download"><i class="icon-down-circled2 "></i>Download My CV</a>
+            </div>
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Personal Info</h3>
+                <span class="line mb-5"></span>
+                <ul class="mt40 info list-unstyled">
+                    <li><span>Full name</span> :{{a.name}}</li>
+                    <li><span>Birthdate</span> :{{a.bday | date:'d.m.Y' }}</li>
+                    <li><span>Email</span> : {{a.email}}</li>
+                    <li><span>Phone</span> : {{a.phone}}</li>
+                    <li><span>Address</span> :{{a.adress}}</li>
+                </ul>
+                <ul class="social-icons pt-3">
+                    {% for d in social %}
+                    <li class="social-item"><a class="social-link" href="{{d.url}}"><i class="{{d.icon}}" aria-hidden="true"></i></a></li>
+                     {% endfor %}
+                </ul>  
+            </div>
+            {% endfor %}
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">My Expertise</h3>
+                <span class="line mb-5"></span>
+                {% for b in expertise %}
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><i class="{{ b.icon }} icon-lg"></i></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>{{b.name}}</h6>
+                        <p class="subtitle">{{b.desc}}</p>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Resume Section-->
+    <section class="section" id="resume">
+        <div class="container">
+            <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Expertise</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {% for n in expertise %}
+                            <h6 class="title text-danger">{{n.year}}</h6>
+                            <P>{{n.name}}</P>
+                            <P class="subtitle">{{n.notes}}</P>
+                            <hr>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Education</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {% for e in edu %}
+                            <h6 class="title text-danger">{{e.name}}</h6>
+                            <P>{{e.name}}</P>
+                            <P class="subtitle">{{e.notes}}</P>
+                            <hr>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2">Skills</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        <div class="card-body pb-2">
+                            {% for s in skil %}
+                           <h6>{{ s.name }}</h6>
+                            {% endfor %}
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark text-center">
+        <div class="container">
+            <div class="row text-center">
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="service">
+        <div class="container">
+            <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Services</h2>
+            <div class="row">
+                {% for e in expertise %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="card mb-5">
+                       <div class="card-header has-icon">
+                            <i class="{{ e.icon }} text-danger" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-body px-4 py-3">
+                            <h5 class="mb-3 card-title text-dark">{{ e.desc }}</h5>
+                            <P class="subtitle">{{ e.notes }}</P>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="section bg-dark py-5">
+        <div class="container text-center">
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section bg-custom-gray" id="portfolio">
+        <div class="container">
+            <h1 class="mb-5"><span class="text-danger">My</span> Sertificates</h1>
+            <div class="portfolio">
+                <div class="portfolio-container"> 
+                    {% for c in cert  %}
+                    <div class="col-md-6 col-lg-4 web new">
+                        <div class="portfolio-item">
+                            <img src="{{ c.image.url }}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">{{ c.name }}</h6>
+                                    <a class="subtitle" href="{{c.file.url}}">{{ c.info }}</a>
+                                </div>
+                            </div>   
+                        </div>             
+                    </div>
+                    {% endfor %}
+                </div> 
+            </div>  
+        </div>            
+    </section>
+    <!-- End of portfolio section -->
+
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="mb-5">Latest <span class="text-danger">Projects</span></h2>
+            <div class="row">
+               
+                {% for p in port  %}
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="{{ p.img.url }}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h4 class="title">{{p.name}}</h4>
+
+                       
+                        
+                        <p> {{ p.desc }}</p>
+
+                        <a href="{{ p.url }}" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper -->
+                 {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <div class="section contact" id="contact">
+        <div id="map" class="map"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Get in touch</h4>
+                        {% for i in information %}
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-mobile icon-md"></i>
+                            </div>
+                            <div class="col-10 ">
+                                <h6 class="d-inline">Phone : <br> <span class="text-muted">{{ i.phone }}</span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-map-alt icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Address :<br> <span class="text-muted">{{ i.adress }}</span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-envelope icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Email :<br> <span class="text-muted">{{ i.email }}</span></h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <ul class="social-icons pt-4">
+                            {% for l in social %}
+                            <li class="social-item"><a class="social-link text-dark" href="{{l.url}}"><i class="{{l.icon}}" aria-hidden="true"></i></a></li>
+                           
+                            {% endfor %}
+                        </ul> 
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Expertise</h4>
+                        {% for b in expertise %}
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><i class="{{ b.icon }} icon-lg"></i></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>{{b.name}}</h6>
+                        <p class="subtitle">{{b.desc}}</p>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Skills</h4>
+                        <div class="card-body pb-2">
+                            {% for s in skil %}
+                           <h6>{{ s.name }}</h6>
+                            {% endfor %}
+                        </div>
+                        <ul class="social-icons pt-4">
+                            {% for l in social %}
+                            <li class="social-item"><a class="social-link text-dark" href="{{l.url}}"><i class="{{l.icon}}" aria-hidden="true"></i></a></li>
+                           
+                            {% endfor %}
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="footer py-3">
+        <div class="container">
+            
+        </div>
+    </footer>
+
+	<!-- core  -->
+    <script src="{% static 'vendors/jquery/jquery-3.4.1.js'%}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js'%}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'bootstrap/bootstrap.affix.js'%}"></script>
+
+    <!-- Isotope  -->
+    <script src="{% static 'vendors/isotope/isotope.pkgd.js'%}"></script>
+    
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="{% static 'js/johndoe.js'%}"></script>
+
+   
+</body>
+</html>
